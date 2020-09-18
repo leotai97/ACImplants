@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="AOImplants.exe" version="1.0.0.0" publicKeyToken="19b200b0daa873e1" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="AOImplants" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="AOImplants.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AOImplants.exe" size="64000">
+      <assemblyIdentity name="AOImplants" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>K8bo8bxZtiu8u/udUXF8vVvq6EHxc1/NaiCNB2m0Gs4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="AOImplants.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=BRIAN-RIGHT\Brian L Hughes" issuerKeyHash="be66228be763bda8ac71457f35cb136bff96bf33" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>W1edwY7kAY/FENgxCXsC/DhbzQCFq6D1pYqTal06MEY=</DigestValue></Reference></SignedInfo><SignatureValue>QB+fCbk3Cx5CanV9dt808QCZK5REXWYLDS4epTPQ7mBh8ERLYziQsETiVjgqOLQbRJSqYv+uGF5EV4Ny15a4zW5/fvMNtdm3tc4pDIB4ER3c+9Z5u/B/XnSRdH9ttxZfuCIkOl09Bw6pZG2g0w10nVsFx6v34/st38bo6uGEy68=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>u7SCC8jKY8kcNaFp/dOwSXjBEJYBPIUjU/ZbFcwbtgM9Gi12ToWYjO7glz4/yRP4PejrAQMWmAtNwGTZ744cNA8cOmfXce2lNWXU14fNjFDX/iDYMzI3/bmxJk83RYMYTUDtnmM5d6WorUSL42IiHOSICbwXlA/aCfIZWLyWj5k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="46303a5d6a938aa5f5a0ab8500cd5b38fc027b0931d810c58f01e48ec19d575b" Description="" Url=""><as:assemblyIdentity name="AOImplants.exe" version="1.0.0.0" publicKeyToken="19b200b0daa873e1" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=BRIAN-RIGHT\Brian L Hughes</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>1nMhjuaR74Kz0LgkPwiQjc+p4e/uttvJoB6pjga5bd4=</DigestValue></Reference></SignedInfo><SignatureValue>QVpj94+tSW7ATrXXtYV34EuY0USYLrv2CkTVSnBhHnFFbxqiU10r3EFTyGbcYNlxof9JBz7QzIjjzscFyJxbeiPYa3J0b707nchjcGgwsBFekx6RDVeflQ7BSuG+Mds7LVTAW11QEyHPbMsQjA3JzoYG4F60Pzy0vEW6fE+r8sU=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>u7SCC8jKY8kcNaFp/dOwSXjBEJYBPIUjU/ZbFcwbtgM9Gi12ToWYjO7glz4/yRP4PejrAQMWmAtNwGTZ744cNA8cOmfXce2lNWXU14fNjFDX/iDYMzI3/bmxJk83RYMYTUDtnmM5d6WorUSL42IiHOSICbwXlA/aCfIZWLyWj5k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIICATCCAWqgAwIBAgIQdckuT+CVCYNKeU9sep1MtTANBgkqhkiG9w0BAQsFADA/MT0wOwYDVQQDHjQAQgBSAEkAQQBOAC0AUgBJAEcASABUAFwAQgByAGkAYQBuACAATAAgAEgAdQBnAGgAZQBzMB4XDTIwMDkxODE5NDc0NFoXDTIxMDkxOTAxNDc0NFowPzE9MDsGA1UEAx40AEIAUgBJAEEATgAtAFIASQBHAEgAVABcAEIAcgBpAGEAbgAgAEwAIABIAHUAZwBoAGUAczCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAu7SCC8jKY8kcNaFp/dOwSXjBEJYBPIUjU/ZbFcwbtgM9Gi12ToWYjO7glz4/yRP4PejrAQMWmAtNwGTZ744cNA8cOmfXce2lNWXU14fNjFDX/iDYMzI3/bmxJk83RYMYTUDtnmM5d6WorUSL42IiHOSICbwXlA/aCfIZWLyWj5kCAwEAATANBgkqhkiG9w0BAQsFAAOBgQCVRBXYFYx10xyoBhuR8yfWq/czlhxnySwkQ8b/nFYf++QMtJe3HbI4183sHe0HGZKz3nLGm99poH0iFXMecxv4OVc4589HieXMOBBIJ6iUrC6gP5Vu3nh3M2jxfjkfkcg4ulUOx3/ffrqpCZkS4Ec1H3lEAlJ4dR2mXmLmMQNREA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
