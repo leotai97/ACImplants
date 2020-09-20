@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,12 +41,15 @@ namespace AOImplants
   public MainWnd()
   {
    InitializeComponent();
-   LoadClusters();
-   LoadComboBoxes();
-   LoadComboBoxTypes();
+
    ShiningCBOs=new List<ComboBox>(){ cboHeadShine, cboEyeShine, cboEarShine, cboChestShine, cboRArmShine, cboRWristShine, cboRHandShine, cboLArmShine, cboLWristShine, cboLHandShine, cboWaistShine, cboLegShine,cboFeetShine};
    BrightCBOs=new List<ComboBox>(){ cboHeadBright, cboEyeBright, cboEarBright, cboChestBright, cboRArmBright, cboRWristBright, cboRHandBright, cboLArmBright, cboLWristBright, cboLHandBright, cboWaistBright, cboLegBright,cboFeetBright};
    FadedCBOs=new List<ComboBox>(){ cboHeadFade, cboEyeFade, cboEarFade, cboChestFade, cboRArmFade, cboRWristFade, cboRHandFade, cboLArmFade, cboLWristFade, cboLHandFade, cboWaistFade, cboLegFade,cboFeetFade};
+
+   LoadClusters();
+   LoadComboBoxes();
+   LoadComboBoxTypes();
+
    SelectedSpecifics=new List<Cluster>();
    LoadedFile="";
    LastPath="";
@@ -68,6 +72,10 @@ namespace AOImplants
      cbo.DrawItem+=new DrawItemEventHandler(OnCBODrawItem);
      cbo.DrawMode= DrawMode.OwnerDrawFixed;
     }
+
+   btnCopy.Click+=new EventHandler(btnClipboard_Click);
+   tabControl1.SelectedIndexChanged+= new EventHandler(TabControl1_Changed);
+   SizeShoppingList();
 
   }
 
@@ -160,18 +168,27 @@ namespace AOImplants
    ClearCBOs();
   }
 
-  private void btnShoppingList_Click(object sender, EventArgs e)
+  private void TabControl1_Changed(object sender, EventArgs e)
   {
-   ShoppingDlg dlg=new ShoppingDlg(this);
+   FillShoppingList();
+  }
+
+  private void FillShoppingList()
+  {
    Cluster c;
+
+   listImplants.Items.Clear();
+   listFaded.Items.Clear();
+   listBright.Items.Clear();
+   listShining.Items.Clear();
 
    foreach (ComboBox cbo in ShiningCBOs)
     {
      if (cbo.SelectedIndex>=0) 
       {
        c=(Cluster)cbo.SelectedItem;
-       dlg.Shining.Items.Add(new ClusterItem(c));
-       AddImplant(dlg.Implants,(Implant)cbo.Tag);
+       listShining.Items.Add(new ClusterItem(c));
+       AddImplant((Implant)cbo.Tag);
       }
     }
    foreach (ComboBox cbo in BrightCBOs)
@@ -179,8 +196,8 @@ namespace AOImplants
      if (cbo.SelectedIndex>=0) 
       {
        c=(Cluster)cbo.SelectedItem;
-       dlg.Bright.Items.Add(new ClusterItem(c));
-       AddImplant(dlg.Implants,(Implant)cbo.Tag);
+       listBright.Items.Add(new ClusterItem(c));
+       AddImplant((Implant)cbo.Tag);
       }
     }
    foreach (ComboBox cbo in FadedCBOs)
@@ -188,30 +205,29 @@ namespace AOImplants
      if (cbo.SelectedIndex>=0) 
       {
        c=(Cluster)cbo.SelectedItem;
-       dlg.Faded.Items.Add(new ClusterItem(c));
-       AddImplant(dlg.Implants,(Implant)cbo.Tag);
+       listFaded.Items.Add(new ClusterItem(c));
+       AddImplant((Implant)cbo.Tag);
       }
     }
-   dlg.Implants.ListViewItemSorter=new SortByName();
-   dlg.Implants.Sort();
-   dlg.Shining.ListViewItemSorter=new SortByName();
-   dlg.Shining.Sort();
-   dlg.Bright.ListViewItemSorter=new SortByName();
-   dlg.Bright.Sort();
-   dlg.Faded.ListViewItemSorter=new SortByName();
-   dlg.Faded.Sort();
-   dlg.ShowDialog();
+   listImplants.ListViewItemSorter=new SortByName();
+   listImplants.Sort();
+   listShining.ListViewItemSorter=new SortByName();
+   listShining.Sort();
+   listBright.ListViewItemSorter=new SortByName();
+   listBright.Sort();
+   listFaded.ListViewItemSorter=new SortByName();
+   listFaded.Sort();
   }
 
-  private void AddImplant(in ListView list, Implant imp)
+  private void AddImplant(Implant imp)
   {
    bool Found=false;
-   foreach(ImplantItem item in list.Items)
+   foreach(ImplantItem item in listImplants.Items)
     {
      if (imp.ImplantType==item.ItemImplant.ImplantType) Found=true;
     }
    if (Found==false)
-     list.Items.Add(new ImplantItem(imp));
+     listImplants.Items.Add(new ImplantItem(imp));
   }
 
   private void btnSet_Click(object sender, EventArgs e)
@@ -282,7 +298,7 @@ namespace AOImplants
      {
       LoadedFile=dlg.FileName;
       LastPath=System.IO.Path.GetDirectoryName(dlg.FileName);
-      this.Text="AO Implants -- "+dlg.FileName;
+      this.Text="AO Implants -- "+dlg.SafeFileName;
      }
    }
    dlg.Dispose();
@@ -572,26 +588,28 @@ private void LoadFeet(int[] s)
 
 private void LoadComboBoxTypes()
 {
- ComboBox c;
- foreach(Control ctrl in Controls)
+ LoadComboBoxTypes(FadedCBOs);
+ LoadComboBoxTypes(BrightCBOs);
+ LoadComboBoxTypes(ShiningCBOs);
+}
+
+private void LoadComboBoxTypes(List<ComboBox>list)
+{
+ foreach(ComboBox c in list)
   {
-   if ( ctrl is ComboBox)
-    {
-     c=(ComboBox)ctrl;
-     SetTag(c,"cboHead",Head);
-     SetTag(c,"cboEye",Eye);
-     SetTag(c,"cboEar",Ear);
-     SetTag(c,"cboChest",Chest);
-     SetTag(c,"cboRArm",RArm);
-     SetTag(c,"cboRWrist",RWrist);
-     SetTag(c,"cboRHand",RHand);
-     SetTag(c,"cboLArm",LArm);
-     SetTag(c,"cboLWrist",LWrist);
-     SetTag(c,"cboLHand",LHand);
-     SetTag(c,"cboWaist",Waist);
-     SetTag(c,"cboLeg",Leg);
-     SetTag(c,"cboFeet",Feet);   
-    }
+   SetTag(c,"cboHead",Head);
+   SetTag(c,"cboEye",Eye);
+   SetTag(c,"cboEar",Ear);
+   SetTag(c,"cboChest",Chest);
+   SetTag(c,"cboRArm",RArm);
+   SetTag(c,"cboRWrist",RWrist);
+   SetTag(c,"cboRHand",RHand);
+   SetTag(c,"cboLArm",LArm);
+   SetTag(c,"cboLWrist",LWrist);
+   SetTag(c,"cboLHand",LHand);
+   SetTag(c,"cboWaist",Waist);
+   SetTag(c,"cboLeg",Leg);
+   SetTag(c,"cboFeet",Feet);   
   }
 }
 
@@ -607,8 +625,8 @@ private void LoadClusters()
   Clusters=new List<Cluster>();
   Clusters.Add(new Cluster("1h Blunt", RArm, RWrist, RHand, Cluster.ImprovementType.Melee));
   Clusters.Add(new Cluster("1h Edged", RArm, RWrist, RHand, Cluster.ImprovementType.Melee));
-  Clusters.Add(new Cluster("2h Blunt", RArm, RWrist, Chest, Cluster.ImprovementType.Melee));
-  Clusters.Add(new Cluster("2h Edged", RArm, RWrist, Waist, Cluster.ImprovementType.Melee));
+  Clusters.Add(new Cluster("2h Blunt", RArm, LArm, Chest, Cluster.ImprovementType.Melee));
+  Clusters.Add(new Cluster("2h Edged", RArm, LArm, Waist, Cluster.ImprovementType.Melee));
   Clusters.Add(new Cluster("Adventuring", Leg,Waist,Chest, Cluster.ImprovementType.Explore));
   Clusters.Add(new Cluster("Agility",Leg,Feet,Waist, Cluster.ImprovementType.Ability));
   Clusters.Add(new Cluster("Aimed Shot",Eye,RWrist,RHand, Cluster.ImprovementType.RangedSpec));
@@ -641,7 +659,6 @@ private void LoadClusters()
   Clusters.Add(new Cluster("Heavy Weapons",RArm,Eye,RHand, Cluster.ImprovementType.Ranged));
   Clusters.Add(new Cluster("Imp/Proj AC",Leg,Chest,Waist, Cluster.ImprovementType.AC));
   Clusters.Add(new Cluster("Intelligence",Head,Eye,Ear, Cluster.ImprovementType.Ability));
-  Clusters.Add(new Cluster("Map Nav",Eye,Head,Ear, Cluster.ImprovementType.Legacy));
   Clusters.Add(new Cluster("Martial Arts",RHand,Feet,LHand, Cluster.ImprovementType.Melee));
   Clusters.Add(new Cluster("Matter Crea",	Head,RHand,Eye, Cluster.ImprovementType.Nanos));
   Clusters.Add(new Cluster("Matt Metam",Head,Chest,LArm, Cluster.ImprovementType.Nanos));
@@ -690,6 +707,21 @@ private void LoadClusters()
   Clusters.Add(new Cluster("Vehicle Ground",Head,Eye,Ear, Cluster.ImprovementType.Explore));
   Clusters.Add(new Cluster("Vehicle Water",Head,Eye,Ear, Cluster.ImprovementType.Explore));
   Clusters.Add(new Cluster("Weaponsmithing",RHand,Head,Eye, Cluster.ImprovementType.TradeRepair));
+
+  Clusters.Add(new Cluster("% Add All Def",LArm,RArm,Feet, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("% Add All Off",LArm,RArm,Feet, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("% Add Damage",RHand,LWrist,RWrist, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("% Add XP",Ear,Feet,Leg, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Heal Delta",LArm,Feet,Leg, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Max NCU",Ear,RWrist,Leg, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Nano Delta",RWrist,RArm,Feet, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Nano Point Cost",Waist,Ear,LArm, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("NF Interrupt",Leg,LHand,Chest, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("RangeInc NF",Eye,Feet,RArm, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("RangeInc Weap",Eye,Feet,RArm, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Shield CCMP AC",LHand,Feet,LWrist, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Shield EFPR AC",LWrist,LHand,Leg, Cluster.ImprovementType.Jobe));
+  Clusters.Add(new Cluster("Skill Time Lock Mod",Leg,LHand,Chest, Cluster.ImprovementType.Jobe));
 }
 
   private void OnCBOKey(object sender, KeyEventArgs e)
@@ -725,7 +757,189 @@ private void LoadClusters()
     }
    back.Dispose();
   }
-  
+
+    private void SizeShoppingList()
+    {
+     int g=listImplants.Left;
+     int tw=tabPage2.ClientSize.Width-(g*5);
+
+     listImplants.Top=g;
+     listImplants.Left=g;
+     listImplants.Width=tw/4;
+     listImplants.Height=tabPage2.ClientSize.Height-(8);;
+     listFaded.Top=listImplants.Top;
+     listFaded.Left=listImplants.Left+listImplants.Width+g;
+     listFaded.Width=tw/4;
+     listFaded.Height=listImplants.Height;
+     listBright.Top=listImplants.Top;
+     listBright.Left=listFaded.Left+listFaded.Width+g;
+     listBright.Width=tw/4;
+     listBright.Height=listImplants.Height;
+     listShining.Top=listImplants.Top;
+     listShining.Left=listBright.Left+listBright.Width+g;
+     listShining.Width=tw/4;
+     listShining.Height=listImplants.Height;
+
+     I1.Width=listImplants.ClientSize.Width-1;
+     s1.Width=listShining.ClientSize.Width-1;
+     b1.Width=listBright.ClientSize.Width-1;
+     f1.Width=listFaded.ClientSize.Width-1;
+    }
+
+
+   private void btnClipboard_Click(object sender, EventArgs e)
+    {
+     Cluster c;
+     List<String>c1,c2,c3,c4;
+     String[,] Array=new string[4, 15];
+     c1=new List<string>();
+     c2=new List<string>();
+     c3=new List<string>();
+     c4=new List<string>();
+     String s;
+     int i, max;
+
+    // First do the shopping list
+
+     FillShoppingList();
+   
+     s=Text+"\r\n\r\n";
+     s+="Shopping List\r\n\r\n";
+
+     c1.Add("Implants");
+     c1.Add("--------");
+     c2.Add("Faded");
+     c2.Add("-------");
+     c3.Add("Bright");
+     c3.Add("------");
+     c4.Add("Shining");
+     c4.Add("-----");
+ 
+
+     foreach(ImplantItem item in listImplants.Items)
+      {
+       c1.Add(item.Text);
+      }
+     foreach(ClusterItem item in listFaded.Items)
+      {
+       c2.Add(item.Text);
+      }
+     foreach(ClusterItem item in listBright.Items)
+      {
+       c3.Add(item.Text);
+      }
+     foreach(ClusterItem item in listShining.Items)
+      {
+       c4.Add(item.Text);
+      }
+     
+      c1=Pad(c1);
+      c2=Pad(c2);
+      c3=Pad(c3);
+      c4=Pad(c4);
+      
+      max=c1.Count;
+      if (c2.Count>max) max=c2.Count;
+      if (c3.Count>max) max=c3.Count;
+      if (c4.Count>max) max=c4.Count;
+
+      for (i=0;i<max;i++)
+       {
+        if (i<c1.Count) s += c1[i]; else s+=new String(' ',c1[0].Length);
+        s+="\t";
+        if (i<c2.Count) s += c2[i]; else s+=new String(' ',c2[0].Length);
+        s+="\t";
+        if (i<c3.Count) s += c3[i]; else s+=new String(' ',c3[0].Length); 
+        s+="\t";
+        if (i<c4.Count) s += c4[i]; else s+=new String(' ',c4[0].Length);
+        s+="\r\n";
+       }
+
+     s+="\r\nImplant Specifications\r\n\r\n";
+
+      // 2nd do the implants as shown on MainWnd
+
+     c1.Clear();
+     c1.Add("Implants   ");
+     c1.Add("--------   ");
+     c1.Add(Head.ImplantName.PadRight(11));
+     c1.Add(Eye.ImplantName.PadRight(11));
+     c1.Add(Ear.ImplantName.PadRight(11));
+     c1.Add(Chest.ImplantName.PadRight(11));
+     c1.Add(RArm.ImplantName.PadRight(11));
+     c1.Add(RWrist.ImplantName.PadRight(11));
+     c1.Add(RHand.ImplantName.PadRight(11));
+     c1.Add(LArm.ImplantName.PadRight(11));
+     c1.Add(LWrist.ImplantName.PadRight(11));
+     c1.Add(LHand.ImplantName.PadRight(11));
+     c1.Add(Waist.ImplantName.PadRight(11));
+     c1.Add(Leg.ImplantName.PadRight(11));
+     c1.Add(Feet.ImplantName.PadRight(11));
+     
+     c2.Clear();
+     c2.Add("Faded");
+     c2.Add("-------");
+     foreach(ComboBox cbo in FadedCBOs)
+      {
+       if (cbo.SelectedIndex>=0) c=(Cluster)cbo.SelectedItem; else c=null;
+       if (c!=null) c2.Add(c.ClusterName); else c2.Add("---");
+      }
+      
+     c3.Clear();
+     c3.Add("Bright");
+     c3.Add("-------");
+     foreach(ComboBox cbo in BrightCBOs)
+      {
+       if (cbo.SelectedIndex>=0) c=(Cluster)cbo.SelectedItem; else c=null;
+       if (c!=null) c3.Add(c.ClusterName); else c3.Add("---");
+      }
+
+     c4.Clear();
+     c4.Add("Shining");
+     c4.Add("-----");
+     foreach(ComboBox cbo in ShiningCBOs)
+      {
+       if (cbo.SelectedIndex>=0) c=(Cluster)cbo.SelectedItem; else c=null;
+       if (c!=null) c4.Add(c.ClusterName); else c4.Add("---");
+      }
+
+      c1=Pad(c1);
+      c2=Pad(c2);
+      c3=Pad(c3);
+      c4=Pad(c4);
+
+    for (i=0;i<15;i++) // no chance of rows being empty 
+      {
+      if (i<c1.Count) s += c1[i]; else s+=new String(' ',c1[0].Length);
+      s+="\t";
+      if (i<c2.Count) s += c2[i]; else s+=new String(' ',c2[0].Length);
+      s+="\t";
+      if (i<c3.Count) s += c3[i]; else s+=new String(' ',c3[0].Length); 
+      s+="\t";
+      if (i<c4.Count) s += c4[i]; else s+=new String(' ',c4[0].Length);
+      s+="\r\n";
+      }
+   
+     Clipboard.SetText(s);  
+     this.Text+=" -- copied to clipboard";
+    }
+
+   private List<String> Pad(List<String> items)
+   {
+    List<String>output=new List<string>();
+    int max=0;
+    foreach(String s in items)
+     {
+      if (s.Length>max) max=s.Length;
+     }
+    foreach(String s in items)
+    {
+     output.Add(s.PadRight(max,' '));
+    } 
+    return output;
+   }
+
+
   };
 
 }

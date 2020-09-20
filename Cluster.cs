@@ -8,7 +8,7 @@ namespace AOImplants
 {
   public class Cluster
   {
-   public enum ImprovementType {Ability, BodyDef, Melee, MeleeSpec, Ranged, RangedSpec, Nanos, Explore, CombatHeal, TradeRepair, AC, Max, Legacy};
+   public enum ImprovementType {Ability, BodyDef, Melee, MeleeSpec, Ranged, RangedSpec, Nanos, Explore, CombatHeal, TradeRepair, AC, Max, Jobe};
    public String ClusterName       { get; private set; }
    public Implant Shining          { get; private set; }
    public Implant Bright           { get; private set; }
@@ -50,7 +50,7 @@ namespace AOImplants
        case ImprovementType.TradeRepair: return "Trade";
        case ImprovementType.AC:          return "AC";
        case ImprovementType.Max:         return "Max";
-       case ImprovementType.Legacy:      return "Legacy";
+       case ImprovementType.Jobe:      return "Jobe";
       }
      return "N/A";
     }

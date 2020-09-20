@@ -91,7 +91,7 @@ namespace AOImplants
  }
  private void btnLegacy_Click(Object s, EventArgs e)
  {
-  AddClusters(Cluster.ImprovementType.Legacy);
+  AddClusters(Cluster.ImprovementType.Jobe);
  }
 
  private void AddClusters(Cluster.ImprovementType cat)
@@ -177,6 +177,6 @@ public class SortByName : System.Collections.IComparer
    yi=(ListViewItem)y;
    return String.Compare(xi.Text,yi.Text);
   }
-}
+};
 
 }

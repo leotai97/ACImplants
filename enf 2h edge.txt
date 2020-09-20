@@ -1,0 +1,37 @@
+AO Implants
+
+Shopping List
+
+Implants   	Faded       	Bright      	Shining    
+--------   	-------     	------      	-----      
+Chest      	2h Edged    	2h Edged    	2h Edged   
+Ear        	Body Dev    	Bio Metamor 	Brawling   
+Eye        	Cold AC     	Body Dev    	Chemical AC
+Feet       	Comp Lit    	Brawling    	Dodge Rng  
+Head       	Duck Exp    	Dimach      	Evade-ClsC 
+Left Arm   	Fast Attack 	Dodge Rng   	Fast Attack
+Left Hand  	Matt Metam  	Evade-ClsC  	Nano Resist
+Left Wrist 	Melee Energy	Fast Attack 	Perception 
+Legs       	Nano Resist 	Fire AC     	Run Speed  
+Right Arm  	Psychic     	Intelligence	Stamina    
+Right Hand 	Sense       	Run Speed   	           
+Right Wrist	Strength    	Strength    	           
+Waist      	Time & Space	Vehicle Air 	           
+
+Implant Specifications
+
+Implants   	Faded       	Bright      	Shining    
+--------   	-------     	-------     	-----      
+Head       	Sense       	Dimach      	Nano Resist
+Eye        	Time & Space	Intelligence	---        
+Ear        	Psychic     	Vehicle Air 	Perception 
+Chest      	Strength    	Bio Metamor 	Stamina    
+Right Arm  	Fast Attack 	Brawling    	2h Edged   
+Right Wrist	Melee Energy	2h Edged    	Run Speed  
+Right Hand 	Comp Lit    	Fast Attack 	---        
+Left Arm   	Matt Metam  	Strength    	Brawling   
+Left Wrist 	Nano Resist 	Run Speed   	---        
+Left Hand  	Cold AC     	Fire AC     	Fast Attack
+Waist      	2h Edged    	Body Dev    	Chemical AC
+Legs       	Body Dev    	Evade-ClsC  	Dodge Rng  
+Feet       	Duck Exp    	Dodge Rng   	Evade-ClsC 

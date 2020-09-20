@@ -1,0 +1,37 @@
+AO Implants -- Enforcer 2H Edge.aof
+
+Shopping List
+
+Implants   	Faded       	Bright      	Shining    
+--------   	-------     	------      	-----      
+Chest      	2h Edged    	2h Edged    	2h Edged   
+Ear        	Body Dev    	Body Dev    	Brawling   
+Eye        	Cold AC     	Brawling    	Chemical AC
+Feet       	Comp Lit    	Dimach      	Dodge Rng  
+Head       	Duck Exp    	Dodge Rng   	Evade-ClsC 
+Left Arm   	Fast Attack 	Fast Attack 	Fast Attack
+Left Hand  	Intelligence	Fire AC     	Perception 
+Left Wrist 	Matt Metam  	Intelligence	Psychic    
+Legs       	Melee Energy	Psychic     	Run Speed  
+Right Arm  	Nano Resist 	Psychology  	Stamina    
+Right Hand 	Sense       	Run Speed   	           
+Right Wrist	Strength    	Stamina     	           
+Waist      	Time & Space	Strength    	           
+
+Implant Specifications
+
+Implants   	Faded       	Bright      	Shining    
+--------   	-------     	-------     	-----      
+Head       	Sense       	Dimach      	Psychic    
+Eye        	Time & Space	Intelligence	---        
+Ear        	Intelligence	Psychology  	Perception 
+Chest      	Strength    	Psychic     	Stamina    
+Right Arm  	Fast Attack 	Brawling    	2h Edged   
+Right Wrist	Melee Energy	2h Edged    	Run Speed  
+Right Hand 	Comp Lit    	Fast Attack 	---        
+Left Arm   	Matt Metam  	Strength    	Brawling   
+Left Wrist 	Nano Resist 	Run Speed   	---        
+Left Hand  	Cold AC     	Fire AC     	Fast Attack
+Waist      	2h Edged    	Body Dev    	Chemical AC
+Legs       	Body Dev    	Stamina     	Dodge Rng  
+Feet       	Duck Exp    	Dodge Rng   	Evade-ClsC 
