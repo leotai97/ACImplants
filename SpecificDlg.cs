@@ -164,17 +164,32 @@ public class ImplantItem : ListViewItem
   }
 };
 
-public class SortByName : System.Collections.IComparer
+public class SortCluster : System.Collections.IComparer
 {
- public SortByName()
+ public SortCluster()
  {
  }
  public int Compare(object x, object y)
   {
-   ListViewItem xi,yi;
+   ClusterItem xi,yi;
 
-   xi=(ListViewItem)x;
-   yi=(ListViewItem)y;
+   xi=(ClusterItem)x;
+   yi=(ClusterItem)y;
+   return String.Compare(xi.Text,yi.Text);
+  }
+};
+
+public class SortImplant : System.Collections.IComparer
+{
+ public SortImplant()
+ {
+ }
+ public int Compare(object x, object y)
+  {
+   ImplantItem xi,yi;
+
+   xi=(ImplantItem)x;
+   yi=(ImplantItem)y;
    return String.Compare(xi.Text,yi.Text);
   }
 };

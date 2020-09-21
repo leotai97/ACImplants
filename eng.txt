@@ -1,0 +1,37 @@
+AO Implants -- Engineer.aof
+
+Shopping List
+
+--------   	-------     	------      	-----       
+Chest      	Faded       	Agility     	Agility     
+Ear        	First Aid   	Bright      	Body Dev    
+Eye        	Fling Shot  	Chemical AC 	Chemical AC 
+Feet       	Intelligence	Evade-ClsC  	Evade-ClsC  
+Head       	Matt Metam  	Fire AC     	Fling Shot  
+Implants   	Max Nano    	Intelligence	Matter Crea 
+Left Arm   	Mech Engi   	Matter Crea 	Multi Ranged
+Left Hand  	Melee Init  	Multi Ranged	Pistol      
+Left Wrist 	Nano Program	Nano Pool   	Shining     
+Legs       	Nano Resist 	Psychic     	Vehicle Air 
+Right Arm  	Run Speed   	Radiation AC	            
+Right Hand 	Sense       	Run Speed   	            
+Right Wrist	Time & Space	Sense       	            
+Waist      	            	Vehicle Air 	            
+
+Implant Specifications
+
+Implants   	Faded       	Bright      	Shining     
+--------   	-------     	-------     	-----       
+Head       	Sense       	Nano Pool   	Matter Crea 
+Eye        	Time & Space	Intelligence	Vehicle Air 
+Ear        	Intelligence	Vehicle Air 	---         
+Chest      	Max Nano    	Psychic     	Body Dev    
+Right Arm  	Mech Engi   	Chemical AC 	Fling Shot  
+Right Wrist	Fling Shot  	Multi Ranged	Pistol      
+Right Hand 	Nano Program	Matter Crea 	---         
+Left Arm   	Matt Metam  	Radiation AC	---         
+Left Wrist 	Nano Resist 	Run Speed   	Multi Ranged
+Left Hand  	First Aid   	Fire AC     	---         
+Waist      	Melee Init  	Sense       	Chemical AC 
+Legs       	Run Speed   	Evade-ClsC  	Agility     
+Feet       	---         	Agility     	Evade-ClsC  

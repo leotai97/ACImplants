@@ -73,7 +73,7 @@ namespace AOImplants
      cbo.DrawMode= DrawMode.OwnerDrawFixed;
     }
 
-   btnCopy.Click+=new EventHandler(btnClipboard_Click);
+   btnCopy.Click+=new EventHandler(btnCopy_Click);
    tabControl1.SelectedIndexChanged+= new EventHandler(TabControl1_Changed);
    SizeShoppingList();
 
@@ -209,13 +209,13 @@ namespace AOImplants
        AddImplant((Implant)cbo.Tag);
       }
     }
-   listImplants.ListViewItemSorter=new SortByName();
+   listImplants.ListViewItemSorter=new SortImplant();
    listImplants.Sort();
-   listShining.ListViewItemSorter=new SortByName();
+   listShining.ListViewItemSorter=new SortCluster();
    listShining.Sort();
-   listBright.ListViewItemSorter=new SortByName();
+   listBright.ListViewItemSorter=new SortCluster();
    listBright.Sort();
-   listFaded.ListViewItemSorter=new SortByName();
+   listFaded.ListViewItemSorter=new SortCluster();
    listFaded.Sort();
   }
 
@@ -469,19 +469,15 @@ private bool Extract(String s, out int [] v)
 
 private void ClearCBOs()
 {
- ComboBox cbo;
-
  SelectedSpecifics.Clear();
  this.Text="AO Implants";
-
- foreach(Control c in Controls)
-  {
-   if (c.Name.Substring(0,3)=="cbo")
-    {
-     cbo=(ComboBox)c;
-     cbo.SelectedIndex=-1;
-    }
-  }
+ 
+ foreach(ComboBox cbo in FadedCBOs)
+   cbo.SelectedIndex=-1;
+ foreach(ComboBox cbo in BrightCBOs)
+   cbo.SelectedIndex=-1;
+ foreach(ComboBox cbo in ShiningCBOs)
+   cbo.SelectedIndex=-1;
 }
 
 private void SetCBO(ComboBox cbo, int v)
@@ -787,7 +783,7 @@ private void LoadClusters()
     }
 
 
-   private void btnClipboard_Click(object sender, EventArgs e)
+   private void btnCopy_Click(object sender, EventArgs e)
     {
      Cluster c;
      List<String>c1,c2,c3,c4;
@@ -800,8 +796,7 @@ private void LoadClusters()
      int i, max;
 
     // First do the shopping list
-
-     FillShoppingList();
+    FillShoppingList();
    
      s=Text+"\r\n\r\n";
      s+="Shopping List\r\n\r\n";
@@ -837,7 +832,12 @@ private void LoadClusters()
       c2=Pad(c2);
       c3=Pad(c3);
       c4=Pad(c4);
-      
+   
+      c1.Sort();
+      c2.Sort();
+      c3.Sort();
+      c4.Sort();
+
       max=c1.Count;
       if (c2.Count>max) max=c2.Count;
       if (c3.Count>max) max=c3.Count;

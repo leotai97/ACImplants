@@ -1,0 +1,37 @@
+AO Implants -- Doctor.aof
+
+Shopping List
+
+--------   	-------     	------      	-----       
+Chest      	Bio Metamor 	Agility     	Chemical AC 
+Ear        	Body Dev    	Bio Metamor 	Dodge Rng   
+Eye        	Comp Lit    	Bright      	Evade-ClsC  
+Feet       	Faded       	Chemical AC 	Fling Shot  
+Head       	First Aid   	Evade-ClsC  	Matt Metam  
+Implants   	Fling Shot  	Fire AC     	Multi Ranged
+Left Arm   	Intelligence	Intelligence	Nano Pool   
+Left Hand  	Matt Metam  	Max Nano    	Pistol      
+Left Wrist 	Max Nano    	Multi Ranged	Shining     
+Legs       	Nano Resist 	Nano Pool   	Vehicle Air 
+Right Arm  	Pistol      	Pistol      	            
+Right Hand 	Radiation AC	Radiation AC	            
+Right Wrist	Sense       	Run Speed   	            
+Waist      	            	Vehicle Air 	            
+
+Implant Specifications
+
+Implants   	Faded       	Bright      	Shining     
+--------   	-------     	-------     	-----       
+Head       	Sense       	Nano Pool   	Matt Metam  
+Eye        	Pistol      	Intelligence	Vehicle Air 
+Ear        	Intelligence	Vehicle Air 	---         
+Chest      	Max Nano    	Bio Metamor 	Nano Pool   
+Right Arm  	Radiation AC	Chemical AC 	Fling Shot  
+Right Wrist	Fling Shot  	Multi Ranged	Pistol      
+Right Hand 	Comp Lit    	Pistol      	---         
+Left Arm   	Matt Metam  	Radiation AC	---         
+Left Wrist 	Nano Resist 	Run Speed   	Multi Ranged
+Left Hand  	First Aid   	Fire AC     	---         
+Waist      	Bio Metamor 	Max Nano    	Chemical AC 
+Legs       	Body Dev    	Evade-ClsC  	Dodge Rng   
+Feet       	---         	Agility     	Evade-ClsC  
